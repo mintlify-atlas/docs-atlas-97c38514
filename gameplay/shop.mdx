@@ -1,0 +1,87 @@
+---
+title: "Shop: Buying and Selling Buildings for Passive CPS"
+description: "Discover how to buy and sell buildings in the Shop tab, understand CPS scaling, unlock conditions, and manage bulk transactions efficiently."
+---
+
+The Shop is the engine of your coffee empire. Buildings purchased here produce coffee automatically every second — no clicking required. As you stack more buildings and unlock upgrades for them, your coffee-per-second (CPS) snowballs into an ever-growing torrent, letting you push toward prestige thresholds and the most expensive upgrades without lifting a finger.
+
+## Buy and Sell Mode Selector
+
+At the top of the Shop tab sits the **buy/sell mode selector**, a row of buttons that control how many buildings are transacted at once:
+
+```
+Sell ×100  |  Sell ×10  |  Sell ×1  ||  Buy ×1  |  Buy ×10  |  Buy ×100
+```
+
+- **Buy ×1 / ×10 / ×100** — Sets how many of a building you attempt to buy per click. The game will purchase as many as you can actually afford, up to the selected quantity.
+- **Sell ×1 / ×10 / ×100** — Sets how many of a building you sell per click, up to the number you own.
+
+Your chosen buy and sell modes are saved automatically and persist across sessions.
+
+<Tip>
+  Switch to **Buy ×10** or **Buy ×100** once you have a comfortable coffee surplus. The game automatically caps the purchase at however many you can afford, so you will never accidentally overspend.
+</Tip>
+
+## How Buildings Produce Coffee
+
+Each building contributes a fixed amount of CPS to your total, multiplied by any applicable upgrade multipliers and your prestige multiplier:
+
+```
+item CPS contribution = baseCPS × itemMultiplier × prestigeMultiplier
+```
+
+Total CPS is the sum of all buildings' contributions, then further multiplied by your permanent CPS bonus (if you have purchased Golden Upgrades for it). Coffee accumulates automatically in the background — you do not need to remain on the Shop tab.
+
+## Building Overview
+
+The first six buildings cover the early-to-mid game. Later buildings scale dramatically in both cost and output.
+
+| Building | Base Cost | Base CPS | Price Scale |
+|---|---|---|---|
+| Auto Brewer | 50 | 5 | ×1.15 per owned |
+| Barista | 500 | 10 | ×1.15 per owned |
+| Coffee Grinder | 5,000 | 100 | ×1.20 per owned |
+| Espresso Machine | 50,000 | 500 | ×1.20 per owned |
+| Coffee Truck | 200,000 | 2,000 | ×1.25 per owned |
+| Coffee Factory | 1,000,000 | 30,000 | ×1.25 per owned |
+
+For the complete list of all 16 buildings — from Coffee Corporation all the way to Coffee Multiverse — see the [full building reference](/reference/buildings).
+
+## Price Scaling
+
+Every building has a **scale factor** that increases its cost each time you buy one. The cost of the *n*th unit of a building is:
+
+```
+cost(n) = baseCost × scale^(n−1)
+```
+
+For bulk purchases, the game sums the geometric series across all units you are buying. This means the 50th Auto Brewer costs significantly more than the 1st, so early investment pays off more per coffee spent than late stacking.
+
+<Info>
+  Buildings with a higher scale factor (×1.25 or ×1.35) become expensive faster. Prioritize upgrade purchases that double a building's CPS before buying large quantities of those buildings.
+</Info>
+
+## Selling Buildings
+
+You can sell any building you own for a **50% refund** of its last purchase price. Selling is useful when you want to reallocate coffee toward a more impactful building or a costly upgrade.
+
+The sell value for one unit is:
+
+```
+sellValue = floor(baseCost × scale^(count−1) × 0.5)
+```
+
+Using **Sell ×10** or **Sell ×100** sells multiple units in sequence, applying the refund calculation to each one individually. Note that selling reduces your owned count and therefore lowers your CPS immediately.
+
+<Warning>
+  Selling buildings also moves you away from upgrade unlock thresholds that require a minimum count (e.g., 10, 25, or 50 owned). Sell strategically so you do not lose access to upgrades you are close to unlocking.
+</Warning>
+
+## Building Unlock Conditions
+
+Buildings are hidden until one of two conditions is met:
+
+1. You already own at least one of that building, **or**
+2. Your current coffee balance is at least **50% of the building's base cost**.
+
+This means a new building appears in the Shop as soon as you accumulate half of what it costs, giving you a heads-up to start saving before you can fully afford it.

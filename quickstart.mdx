@@ -1,80 +1,56 @@
 ---
-title: "Quickstart"
-description: "Start building awesome documentation in minutes"
+title: "Get your first automated production running"
+description: "Go from zero to your first Auto Brewer in minutes, then build an upgrade pipeline that carries you toward your first prestige at 10 billion coffee."
 ---
 
-## Get started in three steps
+The fastest way to understand Coffee Tycoon is to get automated production working. Once your first building is generating coffee on its own, the idle loop clicks into place and the rest of the game opens up naturally.
 
-Get your documentation site running locally and make your first customization.
+<Steps>
+  <Step title="Open the Brew House and start clicking">
+    When you first load the game, you land on the **Brew House** tab. Click the ☕ button repeatedly. Each click earns 1 coffee. You need 50 coffee to buy your first building, so click until the **Coffee** counter in the top status bar reaches 50.
 
-### Step 1: Set up your local environment
+    Watch the **CPS** counter — it reads 0 until you own at least one building.
+  </Step>
+  <Step title="Buy your first Auto Brewer">
+    Press `2` or click the **Shop** tab. You'll see **Auto Brewer** at the top of the list — it costs **50 coffee** and generates **5 CPS**.
 
-<AccordionGroup>
-  <Accordion icon="copy" title="Clone your docs locally">
-    During the onboarding process, you created a GitHub repository with your docs content if you didn't already have one. You can find a link to this repository in your [dashboard](https://dashboard.mintlify.com).
-    
-    To clone the repository locally so that you can make and preview changes to your docs, follow the [Cloning a repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) guide in the GitHub docs.
-  </Accordion>
-  <Accordion icon="rectangle-terminal" title="Start the preview server">
-    1. Install the Mintlify CLI: `npm i -g mint`
-    2. Navigate to your docs directory and run: `mint dev`
-    3. Open `http://localhost:3000` to see your docs live!
-    
-    <Tip>Your preview updates automatically as you edit files.</Tip>
-  </Accordion>
-</AccordionGroup>
+    Click **Buy ×1** next to Auto Brewer. Your coffee balance drops to 0, and CPS immediately jumps to 5. You are now earning coffee automatically.
+  </Step>
+  <Step title="Build up to 10 Auto Brewers">
+    Keep clicking in the Brew House while your Auto Brewer earns passively. Use the coffee to buy more Auto Brewers. Each additional Auto Brewer adds another 5 CPS, though the cost scales by ×1.15 with each purchase (second costs 57 coffee, third costs 66, and so on).
 
-### Step 2: Deploy your changes
+    Once you own **10 Auto Brewers**, the first upgrade unlocks in the Upgrades tab.
+  </Step>
+  <Step title="Buy your first upgrade">
+    Press `3` or click the **Upgrades** tab. You'll see **Upgraded Auto Brewer** — it costs 500 coffee and doubles all Auto Brewer production. Buy it. Your Auto Brewers now produce 10 CPS each instead of 5.
 
-<AccordionGroup>
-  <Accordion icon="github" title="Install our GitHub app">
-    Install the Mintlify GitHub app from your [dashboard](https://dashboard.mintlify.com/settings/organization/github-app).
-    
-    Our GitHub app automatically deploys your changes to your docs site, so you don't need to manage deployments yourself.
-</Accordion>
-<Accordion icon="palette" title="Update your site name and colors">
-    For a first change, let's update the name and colors of your docs site.
+    This is the upgrade flywheel: own more of a building → unlock its upgrade → double its output → earn coffee faster → buy the next building.
+  </Step>
+  <Step title="Expand to a Barista">
+    With doubled Auto Brewer income, save up **500 coffee** for a **Barista** — the second building, which generates 10 CPS at base. Continue the pattern: buy multiple Baristas, unlock the Barista upgrade (unlocks at 10 Baristas, costs 5,000 coffee), and move up to a **Coffee Grinder** (5,000 coffee, 100 CPS).
+  </Step>
+  <Step title="Work toward your first prestige">
+    The prestige threshold is **10 billion total coffee brewed** (tracked as "totalCoffeeAllTime" — every coffee ever earned, not just your current balance). Keep expanding your building roster and buying upgrades. When you hit the threshold, the **Prestige** tab lights up.
 
-    1. Open `docs.json` in your editor.
-    2. Change the `"name"` field to your project name.
-    3. Update the `"colors"` to match your brand.
-    4. Save and see your changes instantly at `http://localhost:3000`.
+    Prestige resets your coffee, buildings, and regular upgrades, but you gain **Golden Coffee** and a permanent production multiplier. Your second run will be noticeably faster.
+  </Step>
+</Steps>
 
-    <Tip>Try changing the primary color to see an immediate difference!</Tip>
-  </Accordion>
-</AccordionGroup>
-
-### Step 3: Go live
-
-<Accordion icon="rocket" title="Publish your docs">
-  1. Commit and push your changes.
-  2. Your docs will update and be live in moments!
-</Accordion>
-
-## Next steps
-
-Now that you have your docs running, explore these key features:
-
-<CardGroup cols={2}>
-
-<Card title="Write Content" icon="pen-to-square" href="/essentials/markdown">
-  Learn MDX syntax and start writing your documentation.
-</Card>
-
-<Card title="Customize style" icon="palette" href="/essentials/settings">
-  Make your docs match your brand perfectly.
-</Card>
-
-<Card title="Add code examples" icon="square-code" href="/essentials/code">
-  Include syntax-highlighted code blocks.
-</Card>
-
-<Card title="API documentation" icon="code" href="/api-reference/introduction">
-  Auto-generate API docs from OpenAPI specs.
-</Card>
-
-</CardGroup>
+<Tip>
+  Use keyboard shortcuts to switch tabs without reaching for the mouse: `1` for Brew House, `2` for Shop, `3` for Upgrades, `4` for Prestige, `5` for Achievements. This is especially useful early on when you're toggling between clicking and buying.
+</Tip>
 
 <Note>
-  **Need help?** See our [full documentation](https://mintlify.com/docs) or join our [community](https://mintlify.com/community).
+  Coffee Tycoon saves your progress automatically to your browser's localStorage after every purchase. You don't need to do anything to save. If you want to move your save to another browser or device, use **Settings → Export Save** to copy a save string, then **Import Save** on the other device.
 </Note>
+
+## Buildings reference (first four)
+
+| Building | Base cost | Base CPS | First upgrade unlocks at |
+|----------|-----------|----------|--------------------------|
+| Auto Brewer | 50 | 5 | 10 owned |
+| Barista | 500 | 10 | 10 owned |
+| Coffee Grinder | 5,000 | 100 | 10 owned |
+| Espresso Machine | 50,000 | 500 | 10 owned |
+
+Costs scale by ×1.15 per purchase for Auto Brewer and Barista, and ×1.20 for Coffee Grinder and Espresso Machine.

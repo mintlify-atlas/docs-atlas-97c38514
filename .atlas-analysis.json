@@ -1,23 +1,11 @@
 {
-  "$schema": "https://mintlify.com/docs.json",
-  "name": "Coffee Tycoon",
+  "projectType": "saas",
+  "projectName": "Coffee Tycoon",
+  "projectDescription": "An idle incremental browser game where you brew coffee, purchase buildings, unlock upgrades, and prestige for permanent Golden Coffee bonuses.",
   "theme": "almond",
-  "colors": {
-    "primary": "#d4a574",
-    "light": "#f5e6d3",
-    "dark": "#1a1a2e"
-  },
-  "navbar": {
-    "primary": {
-      "type": "github",
-      "href": "https://github.com/coffeetycoon/coffeetycoon.github.io"
-    }
-  },
-  "footer": {
-    "socials": {
-      "github": "https://github.com/coffeetycoon/coffeetycoon.github.io"
-    }
-  },
+  "primaryColor": "#d4a574",
+  "lightColor": "#f5e6d3",
+  "darkColor": "#1a1a2e",
   "navigation": {
     "tabs": [
       {
@@ -84,5 +72,30 @@
         ]
       }
     ]
-  }
+  },
+  "keyFeatures": [
+    "Click-based coffee brewing with progressive click power upgrades",
+    "16 buildings from Auto Brewer to Coffee Multiverse, each with 8 upgrade tiers",
+    "Prestige system that resets progress but grants permanent Golden Coffee production multipliers",
+    "Golden Upgrades for automation (auto-buy, auto-claim achievements) and permanent CPS bonuses",
+    "Achievement system with 400+ achievements across coffee milestones, CPS milestones, and building collections",
+    "Save export/import via base64 strings for cross-device progress transfer",
+    "Extended number support up to trigintillion (10^96) for late-game numbers",
+    "Settings panel for notifications, quick keys, and number display format"
+  ],
+  "publicApiSurface": [
+    "buyItem(itemId, amount)",
+    "sellItem(itemId, amount)",
+    "buyUpgrade(upgradeId)",
+    "buyGoldenUpgrade(upgradeId)",
+    "doPrestige()",
+    "exportSave()",
+    "importSave(importString)",
+    "eraseProgress()",
+    "calculateTotalCPS()",
+    "abbreviateNumber(num)",
+    "checkAchievements()",
+    "claimAchievementReward(achievement)",
+    "runAutomation()"
+  ]
 }

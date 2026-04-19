@@ -1,0 +1,72 @@
+---
+title: "Golden Coffee: The prestige currency that persists forever"
+description: "Golden Coffee is Coffee Tycoon's prestige currency. Earn it through prestige and spend it on automation upgrades or permanent CPS bonuses that never reset."
+---
+
+Golden Coffee is the only currency in Coffee Tycoon that never disappears. Earned exclusively through [prestige](/gameplay/prestige), it funds a separate shop of Golden Upgrades — automation tools that remove repetitive tasks and permanent CPS bonuses that stack on top of your prestige multiplier. Because Golden Coffee carries through every reset, every coin you spend or hold shapes every run from that point forward.
+
+<Note>
+Golden Coffee is capped at **100**. Once you reach the cap, additional prestige runs will not award more Golden Coffee, so plan your spending around this ceiling.
+</Note>
+
+## How Golden Coffee is earned
+
+Golden Coffee is awarded when you prestige. The amount you hold after a prestige is set by the formula:
+
+```
+Golden Coffee = floor( log₂( totalCoffeeAllTime / 10,000,000,000 + 1 ) )
+```
+
+Your first coin requires 10 billion total lifetime coffee. Each subsequent coin requires roughly double the coffee of the previous one. See [Prestige](/gameplay/prestige) for the full formula and threshold table.
+
+## Golden Upgrades
+
+Golden Upgrades are purchased from the **Upgrades tab → Golden Upgrades** sub-tab using Golden Coffee. Unlike regular upgrades, they are **never reset** by prestige. Each upgrade can only be purchased once.
+
+### Full upgrade list
+
+| Upgrade | Cost | Type | Effect |
+|---------|------|------|--------|
+| Auto-Buy Upgrades | 2 GC | Automation | Automatically purchases any affordable regular upgrade every 500 ms |
+| Auto-Claim Achievements | 2 GC | Automation | Automatically claims achievement rewards as they unlock |
+| Mark All Read | 2 GC | One-time action | Clears all active notifications and unclaimed achievement alerts immediately |
+| Auto-Buy Items | 4 GC | Automation | Automatically purchases affordable buildings every 500 ms |
+| Permanent +5% CPS | 10 GC | Production | Multiplies base CPS by 1.05 permanently |
+| Permanent +10% CPS | 20 GC | Production | Multiplies base CPS by 1.10 permanently |
+| Permanent +20% CPS | 40 GC | Production | Multiplies base CPS by 1.20 permanently |
+
+### Automation upgrades
+
+The three auto-buy and auto-claim upgrades run on the game's 500 ms automation loop. Once purchased:
+
+- **Auto-Buy Upgrades** purchases any unlocked regular upgrade you can currently afford, without requiring you to visit the Upgrades tab.
+- **Auto-Buy Items** purchases the maximum affordable quantity of any unlocked building. Pairs well with Auto-Buy Upgrades to fully automate the shop.
+- **Auto-Claim Achievements** collects achievement rewards the moment they unlock. Combined with Auto-Buy Upgrades, this effectively runs the mid-game loop for you.
+
+### Permanent CPS bonuses
+
+The three CPS bonuses apply a multiplicative bonus to your **base** CPS, stacking with your prestige multiplier:
+
+```
+totalCPS = baseBuildingCPS × itemUpgradeMultipliers × prestigeMultiplier × permanentCPSBonus
+```
+
+Purchased bonuses compound: buying +5% then +10% gives `1.05 × 1.10 = 1.155×`, not 1.15×. Buying all three gives `1.05 × 1.10 × 1.20 = 1.386×` (a ~38.6% permanent boost).
+
+## The automation vs. production trade-off
+
+Every Golden Coffee you spend on automation reduces the pool available to hold as prestige multiplier. Every coin you spend on permanent CPS bonuses locks in a production boost but also reduces the amount driving your `1 + (goldenCoffee × 0.1)` prestige multiplier.
+
+Consider the cost of each path:
+
+| Goal | Total GC spent | What you gain |
+|------|----------------|---------------|
+| Full automation suite | 8 GC (2+4+2) | Hands-free mid-game; no manual clicking required |
+| All permanent CPS | 70 GC (10+20+40) | ~38.6% permanent CPS bonus on top of prestige multiplier |
+| Full automation + all CPS | 78 GC | Both benefits, leaving 22 GC available toward the 100 cap |
+
+Early on, automation upgrades pay off quickly by reducing the time you need to spend actively managing runs. Production bonuses scale better the longer a run lasts and the higher your base CPS climbs.
+
+<Tip>
+Buy automation upgrades first. They reduce active management across every future run immediately. Save the permanent CPS bonuses for when you're accumulating Golden Coffee faster and can afford to spend 70 GC on production without it significantly impacting your prestige multiplier.
+</Tip>

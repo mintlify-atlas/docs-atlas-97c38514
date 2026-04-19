@@ -1,0 +1,75 @@
+---
+title: "Export and import your Coffee Tycoon save"
+description: "Back up your Coffee Tycoon progress as a portable base64 string, then restore it in any browser or on any device using the Settings panel."
+---
+
+Coffee Tycoon stores your game in your browser's `localStorage` under the key `coffeeTycoonSave`. Because `localStorage` is tied to a single browser profile, your progress does not automatically follow you to another browser or device. The Export and Import Save tools let you carry your progress anywhere by encoding your entire game state as a base64 string you can copy, store, and paste back in later.
+
+## What the save includes
+
+An exported save captures a full snapshot of your game at the moment of export:
+
+- **Resources** — current coffee, all-time coffee brewed, click power, Golden Coffee count, prestige multiplier
+- **Buildings** — every item's count and current purchase cost
+- **Upgrades** — purchased regular upgrades and purchased Golden Upgrades
+- **Multipliers** — per-item production multipliers accumulated from upgrades and achievements
+- **Achievements** — earned status for every achievement
+- **UI state** — collapsed upgrade packs, buy/sell mode
+- **Settings** — all settings panel preferences
+- **Permanent CPS Bonus** — the compounding bonus from Golden Upgrade purchases
+
+## Exporting your save
+
+<Steps>
+  <Step title="Open Settings">
+    Click the **⚙️** button in the top-right corner of the header to open the Settings panel.
+  </Step>
+  <Step title="Generate the save string">
+    Click **Export Save**. A base64-encoded string appears in the read-only text area below the button. If your browser supports the Clipboard API, the string is also automatically copied to your clipboard.
+  </Step>
+  <Step title="Copy the string">
+    If not already copied, select all the text in the export text area and copy it manually. Store it somewhere safe — a text file, a notes app, or a cloud document.
+  </Step>
+</Steps>
+
+<Note>
+Save strings can be long for advanced game states. Make sure you copy the entire string; a truncated string will fail to import.
+</Note>
+
+## Importing a save
+
+<Steps>
+  <Step title="Open Settings">
+    Click the **⚙️** button in the top-right corner of the header.
+  </Step>
+  <Step title="Paste your save string">
+    Click into the **Import Save** text area (labeled "Paste your save string here") and paste the full base64 string you exported earlier.
+  </Step>
+  <Step title="Apply the import">
+    Click **Import Save**. The game decodes the string, loads all saved state, writes it back to `localStorage`, and refreshes the UI — no page reload required.
+  </Step>
+</Steps>
+
+<Warning>
+Importing a save **overwrites your current progress** in this browser immediately. If you want to keep your existing progress, export it first before importing a different save.
+</Warning>
+
+## Auto-save behavior
+
+You do not need to export your save to avoid losing progress within the same browser. Coffee Tycoon saves automatically in two ways:
+
+- **Event-triggered saves** — the game writes to `localStorage` every time you purchase a building, sell one, buy an upgrade (regular or Golden), or earn an achievement.
+- **Timed auto-save** — the game also saves automatically every **30 seconds** in the background, ensuring progress is captured even during idle periods between events.
+
+This means progress is always preserved within a few seconds of any activity.
+
+<Note>
+Saves are scoped to the specific browser and device where you play. Clearing your browser's site data, cookies, or cache will erase `localStorage` and delete your save. Export your save regularly as an off-browser backup to prevent permanent loss.
+</Note>
+
+## Common use cases
+
+- **Switching browsers** — export in your current browser, import in the new one
+- **Moving to a new device** — export on the old device, transfer the string, import on the new device
+- **Sharing progress** — send your save string to a friend so they can see (or continue from) your game state
+- **Backup before experimenting** — export before spending Golden Coffee on upgrades or prestiging, so you can restore if you change your mind

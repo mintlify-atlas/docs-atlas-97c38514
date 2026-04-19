@@ -1,0 +1,102 @@
+---
+title: "Prestige: Reset your run and multiply production"
+description: "Prestige wipes your coffee, buildings, and upgrades in exchange for Golden Coffee — a permanent multiplier that compounds across every future run."
+---
+
+Prestige is the engine of long-term growth in Coffee Tycoon. When your current run starts to slow down, you trade everything you've built — coffee, buildings, regular upgrades — for Golden Coffee. Each Golden Coffee you hold permanently increases all coffee-per-second (CPS) production by 10%, and that multiplier carries forward through every subsequent prestige. The further you go before resetting, the more Golden Coffee you earn, and the faster your next run accelerates.
+
+## What prestige resets
+
+<Warning>
+Prestiging is irreversible. Once you confirm, your current coffee count, all buildings, and all regular upgrades are permanently wiped. There is no undo.
+</Warning>
+
+When you prestige, the following are **reset to zero**:
+
+- Current coffee count
+- All building counts (Auto Brewer, Barista, Coffee Grinder, etc.)
+- All regular upgrade purchases
+- Click power (returns to 1)
+- All item production multipliers from regular upgrades
+
+## What you keep
+
+The following persist across every prestige:
+
+- **Golden Coffee** — your accumulated prestige currency
+- **Golden Upgrades** — any automation or CPS bonuses already purchased
+- **Prestige multiplier** — recalculated upward based on your new Golden Coffee total
+- **All achievements** — earned achievements and their rewards are never lost
+
+## How Golden Coffee is calculated
+
+The total Golden Coffee you would hold after a prestige is determined by your **total lifetime coffee earned** (not your current coffee):
+
+```
+targetGoldenCoffee = min(100, floor( log₂( totalCoffeeAllTime / 10,000,000,000 + 1 ) ))
+goldenCoffeeGained = targetGoldenCoffee − currentGoldenCoffee
+```
+
+You only receive the **difference** — if you already hold 3 Golden Coffee and the formula gives 5, you gain 2.
+
+- Your first prestige requires at least **10 billion total coffee** ever brewed.
+- The formula uses `log₂`, so each additional Golden Coffee requires roughly double the coffee of the previous threshold.
+- Golden Coffee is **capped at 100** (maximum prestige multiplier: 11.0×).
+
+### Example thresholds
+
+| Total coffee earned | Golden Coffee total |
+|---------------------|---------------------|
+| 10 billion | 1 |
+| 30 billion | 2 |
+| 70 billion | 3 |
+| 1.27 trillion | 7 |
+| ~10.23 trillion | 10 |
+| ~1.27 × 10⁴⁰ | 100 (cap) |
+
+## How the prestige multiplier works
+
+Every Golden Coffee you hold adds a flat **+10%** to your global CPS multiplier:
+
+```
+prestigeMultiplier = 1 + (goldenCoffee × 0.1)
+```
+
+This multiplier applies to all building production and stacks with item upgrade multipliers and any permanent CPS bonuses from Golden Upgrades.
+
+### Multiplier reference
+
+| Golden Coffee held | Prestige multiplier | Effect |
+|--------------------|--------------------|-----------------------------|
+| 0 | 1.0× | No bonus (pre-prestige) |
+| 1 | 1.1× | 10% more CPS |
+| 5 | 1.5× | 50% more CPS |
+| 10 | 2.0× | Double CPS |
+| 20 | 3.0× | Triple CPS |
+| 50 | 6.0× | 6× CPS |
+| 100 | 11.0× | 11× CPS |
+
+## Deciding when to prestige
+
+The prestige screen shows you exactly how many Golden Coffee you would gain and what your new multiplier would be. The key question is whether the multiplier increase justifies starting over.
+
+<Tip>
+Prestige when the Golden Coffee you would gain meaningfully increases your multiplier. Going from 5 GC (1.5×) to 6 GC (1.6×) is a 6.7% improvement — reasonable. Going from 9 GC (1.9×) to 10 GC (2.0×) is a 5.3% improvement but crosses the "double CPS" threshold, which tends to be a strong milestone. Early in the game, every Golden Coffee matters enormously; later, wait until you can gain at least 2–3 at once.
+</Tip>
+
+## How to prestige
+
+<Steps>
+  <Step title="Reach 10 billion total coffee">
+    The **total coffee all time** counter (not your current coffee) must reach 10,000,000,000. This is the minimum to earn your first Golden Coffee.
+  </Step>
+  <Step title="Open the Prestige tab">
+    Click the **Prestige** tab in the main navigation. The tab shows your current multiplier, how many Golden Coffee you would gain, and what your new multiplier would be.
+  </Step>
+  <Step title="Review the preview">
+    Confirm the Golden Coffee gain is worth resetting. The preview shows exactly how many you'll receive and what multiplier results.
+  </Step>
+  <Step title="Confirm the prestige">
+    Click **Prestige** and confirm the prompt. Your run resets immediately and your new multiplier takes effect from the first second of production.
+  </Step>
+</Steps>

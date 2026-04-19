@@ -1,0 +1,55 @@
+---
+title: "Customize Coffee Tycoon with the Settings panel"
+description: "Control how numbers display, manage notifications and keyboard shortcuts, export or import your save, and reset your progress from one place."
+---
+
+The Settings panel is your control center for tailoring Coffee Tycoon to your playstyle. Open it at any time by clicking the **⚙️** button in the top-right corner of the header, next to the help (`?`) and info (`i`) buttons. Every change takes effect immediately and is persisted across sessions.
+
+## Display Options
+
+### Number Display
+
+Choose how large numbers are rendered throughout the game.
+
+| Mode | Example |
+|------|---------|
+| **Abbreviated** (default) | 1.5M, 3.2B, 4.7T |
+| **Full** | 1,500,000; 3,200,000,000 |
+
+Toggle the **Number Display** switch between **Abbreviated** and **Full**. Abbreviated mode uses suffixes (k, M, B, T, Q, Qi, …) to keep figures readable at any scale. Full mode shows the entire integer, which can be useful when you want exact values for comparing costs or planning purchases.
+
+## Gameplay Options
+
+### Notifications
+
+When enabled, a small notification appears in the corner of the screen each time you earn an achievement or complete a purchase. Disable this toggle if you prefer a cleaner screen, especially during late-game automation when purchases fire continuously.
+
+### Quick Keys
+
+Enables keyboard shortcuts for switching between the five main tabs:
+
+| Key | Tab |
+|-----|-----|
+| `1` | Brew House |
+| `2` | Shop |
+| `3` | Upgrades |
+| `4` | Prestige |
+| `5` | Achievements |
+
+Turn this off if the shortcuts conflict with your browser or operating system bindings.
+
+## Save Management
+
+The **Save Management** section lets you export a portable backup of your progress or restore a previously exported save. This is useful when moving between browsers or devices.
+
+See [Export and Import Your Save](/settings/save-export-import) for step-by-step instructions on both workflows.
+
+## Danger Zone
+
+<Warning>
+**Erase All Progress** permanently deletes everything stored in `localStorage` for Coffee Tycoon and immediately reloads the page. There is a confirmation prompt, but once confirmed the action **cannot be undone**. All coffee, buildings, upgrades, achievements, Golden Coffee, and settings are lost.
+
+Only use this if you want to start completely fresh.
+</Warning>
+
+Clicking **Erase All Progress** calls `localStorage.clear()` and reloads the game. Unlike prestige, this removes Golden Coffee and all achievements as well — nothing is preserved.

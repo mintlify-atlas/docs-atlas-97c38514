@@ -1,0 +1,102 @@
+---
+title: "Upgrades: Regular and Golden Upgrades Explained"
+description: "Explore Regular Upgrades bought with coffee and Golden Upgrades bought with Golden Coffee, including all tiers, global bonuses, and automation perks."
+---
+
+The Upgrades tab is where one-time purchases translate your raw coffee count into permanent multipliers and quality-of-life automation. Two distinct economies live here side by side: **Regular Upgrades** spent from your coffee balance, and **Golden Upgrades** spent from the scarce Golden Coffee earned through prestige. Spending wisely between them is central to long-term progression.
+
+<Tabs>
+  <Tab title="Regular Upgrades">
+    Regular Upgrades are bought with coffee, can only be purchased once each, and take effect immediately and permanently for the rest of the run (upgrades reset on prestige, but Golden Coffee multipliers are kept).
+
+    ### Building Tier Upgrades
+
+    Every building has **8 upgrade tiers**, each doubling that building's CPS output. Tiers unlock based on how many of that specific building you own.
+
+    | Tier | Name | Unlock Requirement |
+    |---|---|---|
+    | 1 | Upgraded | 10 owned |
+    | 2 | Advanced | 25 owned |
+    | 3 | Industrial | 50 owned |
+    | 4 | Quantum | 100 owned |
+    | 5 | Hyper | 200 owned |
+    | 6 | Ultra | 400 owned |
+    | 7 | Mega | 700 owned |
+    | 8 | Divine | 1,000 owned |
+
+    Each tier multiplies that building's CPS by **2×**, stacking multiplicatively. Owning all 8 tiers for a single building results in a **256× (2⁸) multiplier** on its base CPS. The cost per tier is `baseCost × 10^tier` — so for an Auto Brewer (base cost 50), the tiers cost 500, 5,000, 50,000, and so on up to 5,000,000,000.
+
+    Upgrades are grouped into collapsible packs in the UI — one pack per building, plus special packs for Click Power and Global Upgrades. A green badge on a pack indicates how many upgrades in it are currently affordable.
+
+    ### Click Power Upgrades
+
+    Three upgrades in the **Click Power Upgrades** pack permanently increase your click power. They unlock based on total all-time coffee brewed, not your current balance.
+
+    | Upgrade | Cost | Effect | Unlock Condition |
+    |---|---|---|---|
+    | Better Coffee Beans | 1,500 | +1 per click | 1,000 total coffee |
+    | Premium Coffee Beans | 15,000 | +2 per click | 10,000 total coffee |
+    | Exotic Coffee Beans | 150,000 | +5 per click | 100,000 total coffee |
+
+    ### Global Upgrades
+
+    Two upgrades in the **Global Upgrades** pack multiply the output of every building at once. They unlock once you own at least the required count across all buildings.
+
+    | Upgrade | Cost | Effect | Unlock Condition |
+    |---|---|---|---|
+    | Efficient Operations | 500,000 | All buildings ×1.5 CPS | 10+ of every building |
+    | Coffee Revolution | 5,000,000 | All buildings ×2 CPS | 25+ of every building |
+
+    Both apply on top of individual building tier multipliers, making them extremely high value. Prioritize reaching their unlock thresholds before spending heavily on individual tier upgrades.
+
+    <Tip>
+      Check the Upgrades tab regularly — a notification badge appears on the tab button whenever a new upgrade unlocks that you have not yet viewed. New upgrades also trigger a pop-up notification if you are on a different tab.
+    </Tip>
+  </Tab>
+
+  <Tab title="Golden Upgrades">
+    Golden Upgrades are purchased with **Golden Coffee**, a separate premium currency earned exclusively through prestige resets. Unlike regular upgrades, Golden Upgrades **persist across prestige resets** — once bought, they are yours forever.
+
+    For details on how Golden Coffee is earned and how prestige works, see [Golden Coffee and Prestige](/gameplay/golden-coffee).
+
+    ### Available Golden Upgrades
+
+    | Upgrade | Cost | Type | Effect |
+    |---|---|---|---|
+    | Auto-Buy Upgrades | 2 GC | Toggle | Automatically purchases any affordable Regular Upgrade |
+    | Auto-Claim Achievements | 2 GC | Toggle | Automatically claims achievement rewards as they are earned |
+    | Mark All Read | 2 GC | One-time action | Clears all active notifications and upgrade badges instantly |
+    | Auto-Buy Items | 4 GC | Toggle | Automatically purchases affordable buildings in the Shop |
+    | Permanent +5% CPS | 10 GC | Passive bonus | Increases base CPS by 5% permanently |
+    | Permanent +10% CPS | 20 GC | Passive bonus | Increases base CPS by 10% permanently |
+    | Permanent +20% CPS | 40 GC | Passive bonus | Increases base CPS by 20% permanently |
+
+    *GC = Golden Coffee*
+
+    ### Toggle vs. Passive Upgrades
+
+    - **Toggle upgrades** (Auto-Buy Upgrades, Auto-Buy Items, Auto-Claim Achievements) activate a background automation that runs every 500 ms. They are always on once purchased and cannot be disabled.
+    - **One-time action** (Mark All Read) triggers its effect immediately at purchase — it clears notification state but is not a repeatable action.
+    - **Passive bonuses** (the three CPS upgrades) permanently multiply your `permanentCPSBonus` factor, which is applied on top of all other CPS multipliers in the total CPS formula.
+
+    The three CPS bonus upgrades stack multiplicatively. Purchasing all three results in a combined **+38.6%** base CPS boost (1.05 × 1.10 × 1.20 = 1.386×), on top of your prestige multiplier and all building/upgrade multipliers.
+
+    <Warning>
+      Golden Coffee is limited to a cap of 100 total. Spend it carefully — automation upgrades save significant time across long sessions, while CPS bonuses compound most strongly after multiple prestige resets when your building counts are high.
+    </Warning>
+
+    ### Unlock Requirements
+
+    All Golden Upgrades are always visible in the UI regardless of your Golden Coffee balance. A "Locked" notice appears beneath upgrades you cannot yet afford, and the buy button is disabled until you meet the cost.
+
+    | Upgrade | Minimum GC to Unlock |
+    |---|---|
+    | Auto-Buy Upgrades | 1 GC |
+    | Auto-Claim Achievements | 1 GC |
+    | Mark All Read | 1 GC |
+    | Auto-Buy Items | 2 GC |
+    | Permanent +5% CPS | 5 GC |
+    | Permanent +10% CPS | 10 GC |
+    | Permanent +20% CPS | 20 GC |
+  </Tab>
+</Tabs>

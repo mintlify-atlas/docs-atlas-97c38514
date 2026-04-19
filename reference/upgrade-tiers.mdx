@@ -1,0 +1,63 @@
+---
+title: "Building upgrade tiers: all 8 tiers and unlock requirements"
+description: "Every upgrade tier for Coffee Tycoon's 16 buildings — unlock thresholds, costs, and multiplier effects, plus click power and global upgrades."
+---
+
+Upgrades are the primary way to multiply your production without buying more buildings. Each of the 16 [buildings](/reference/buildings) has 8 tiers of upgrades, giving **128 building upgrades** in total. On top of those, there are 3 click power upgrades and 2 global production upgrades.
+
+## Building upgrade tiers
+
+All 8 tiers follow the same pattern for every building: each tier **doubles that building's CPS** (applies a ×2 multiplier to `itemMultipliers[id]`), unlocks once you own enough copies, and costs a fixed multiple of the building's base cost.
+
+| Tier | Name | Buildings Required | Cost |
+|---|---|---|---|
+| 1 | Upgraded | 10 | baseCost × 10 |
+| 2 | Advanced | 25 | baseCost × 100 |
+| 3 | Industrial | 50 | baseCost × 1,000 |
+| 4 | Quantum | 100 | baseCost × 10,000 |
+| 5 | Hyper | 200 | baseCost × 100,000 |
+| 6 | Ultra | 400 | baseCost × 1,000,000 |
+| 7 | Mega | 700 | baseCost × 10,000,000 |
+| 8 | Divine | 1,000 | baseCost × 100,000,000 |
+
+Multipliers stack multiplicatively. Purchasing all 8 tiers for a single building results in a **256× production multiplier** (2⁸) on top of any other bonuses.
+
+**Example — Auto Brewer (baseCost 50):**
+
+| Tier | Cost | Cumulative multiplier |
+|---|---|---|
+| Upgraded | 500 | ×2 |
+| Advanced | 5,000 | ×4 |
+| Industrial | 50,000 | ×8 |
+| Quantum | 500,000 | ×16 |
+| Hyper | 5,000,000 | ×32 |
+| Ultra | 50,000,000 | ×64 |
+| Mega | 500,000,000 | ×128 |
+| Divine | 5,000,000,000 | ×256 |
+
+<Tip>
+Prioritize upgrade tiers for whichever building currently contributes the most to your total CPS. A single tier on your highest-output building typically yields a larger absolute CPS gain than all tiers on a lower-output one.
+</Tip>
+
+## Click power upgrades
+
+Three upgrades increase the coffee earned per manual click. They unlock based on your **total all-time coffee brewed**, not your current balance.
+
+| Upgrade | Effect | Cost | Unlock Condition |
+|---|---|---|---|
+| Better Coffee Beans | +1 coffee per click | 1,500 | 1K total coffee |
+| Premium Coffee Beans | +2 coffee per click | 15,000 | 10K total coffee |
+| Exotic Coffee Beans | +5 coffee per click | 150,000 | 100K total coffee |
+
+After all three are purchased, your base click power is **9** (1 base + 1 + 2 + 5).
+
+## Global upgrades
+
+Two upgrades apply a production multiplier to **every** building simultaneously. They unlock once all 16 buildings meet the ownership threshold.
+
+| Upgrade | Effect | Cost | Unlock Condition |
+|---|---|---|---|
+| Efficient Operations | All buildings ×1.5 | 500K | ≥10 of every building |
+| Coffee Revolution | All buildings ×2 | 5M | ≥25 of every building |
+
+Both upgrades apply their multiplier to each building's `itemMultipliers` entry, so they stack with individual tier upgrades multiplicatively. Owning both global upgrades alongside all 8 tiers for a building results in a combined building multiplier of **256 × 1.5 × 2 = 768×**.

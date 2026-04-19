@@ -1,0 +1,60 @@
+---
+title: "All 16 Coffee Tycoon buildings: costs and CPS"
+description: "Complete reference for every building in Coffee Tycoon — base costs, base CPS, and price scaling factors sourced directly from the game."
+---
+
+Buildings are the backbone of your coffee empire. Each one generates coffee per second (CPS) automatically, and stacking multiples of the same building multiplies its output linearly. The game starts you with only the cheapest options visible, gradually revealing more powerful structures as your wealth grows.
+
+## Building reference table
+
+| Building | Base Cost | Base CPS | Price Scale |
+|---|---|---|---|
+| Auto Brewer | 50 | 5 | ×1.15 |
+| Barista | 500 | 10 | ×1.15 |
+| Coffee Grinder | 5K | 100 | ×1.20 |
+| Espresso Machine | 50K | 500 | ×1.20 |
+| Coffee Truck | 200K | 2,000 | ×1.25 |
+| Coffee Factory | 1M | 30,000 | ×1.25 |
+| Coffee Corporation | 8M | 400,000 | ×1.30 |
+| Coffee Franchise | 50M | 5,000,000 | ×1.30 |
+| Coffee Country | 500M | 50,000,000 | ×1.35 |
+| Coffee Continent | 5B | 500,000,000 | ×1.35 |
+| Coffee Planet | 75B | 7,500,000,000 | ×1.40 |
+| Coffee Solar System | 1T | 100,000,000,000 | ×1.40 |
+| Coffee Galaxy | 15T | 1,500,000,000,000 | ×1.45 |
+| Coffee Universe | 250T | 25,000,000,000,000 | ×1.45 |
+| Coffee Dimension | 5Q | 500,000,000,000,000 | ×1.50 |
+| Coffee Multiverse | 100Q | 10,000,000,000,000,000 | ×1.50 |
+
+## Cost formula
+
+Every purchase raises the price of the next copy according to an exponential scale:
+
+```
+nextCost = baseCost × scale^ownedCount
+```
+
+For bulk purchases of `n` copies starting from `k` already owned, the total cost uses the geometric series formula:
+
+```
+totalCost = baseCost × scale^k × (scale^n − 1) / (scale − 1)
+```
+
+For example, buying your second Auto Brewer costs `50 × 1.15^1 = 57.5` (floored to 57), and your tenth costs `50 × 1.15^9 ≈ 175`.
+
+<Note>
+Price scaling compounds with every purchase. A building with a ×1.50 scale (Coffee Dimension, Coffee Multiverse) becomes dramatically more expensive far faster than early-game buildings with a ×1.15 scale. Plan bulk purchases early before costs spiral.
+</Note>
+
+## Visibility rules
+
+Buildings are hidden from the shop until one of two conditions is met:
+
+- You currently own **at least one** copy of that building, **or**
+- Your current coffee is **≥ 50% of the building's base cost**
+
+This means a building with a base cost of 50K becomes visible once you hold 25K coffee, even if you haven't bought it yet.
+
+## Upgrades
+
+Each of the 16 buildings has **8 upgrade tiers** that double its per-building CPS output when purchased. Maxing all tiers for a building multiplies its effective CPS by 2⁸ = 256×. See [Upgrade Tiers](/reference/upgrade-tiers) for the full tier breakdown, unlock requirements, and costs.

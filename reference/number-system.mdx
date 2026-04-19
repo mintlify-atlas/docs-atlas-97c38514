@@ -1,0 +1,67 @@
+---
+title: "Number Abbreviations and Display System in the Game"
+description: "Reference for every number abbreviation Coffee Tycoon uses, from thousands up to trigintillion, and how to toggle full number display in Settings."
+---
+
+Coffee Tycoon produces astronomical quantities of coffee, so all numbers are abbreviated to keep the UI readable. Instead of displaying `1,500,000`, the game shows `1.5M`. This page lists every abbreviation the game uses, drawn directly from the `abbreviateNumber()` function in `core.js`.
+
+## Abbreviation table
+
+| Abbreviation | Approximate scale | Value |
+|---|---|---|
+| k | thousand | 10³ |
+| M | million | 10⁶ |
+| B | billion | 10⁹ |
+| T | trillion | 10¹² |
+| Q | quadrillion | 10¹⁵ |
+| Qi | quintillion | 10¹⁸ |
+| Sx | sextillion | 10²¹ |
+| Sp | septillion | 10²⁴ |
+| Oc | octillion | 10²⁷ |
+| No | nonillion | 10³⁰ |
+| Dc | decillion | 10³³ |
+| Un | undecillion | 10³⁶ |
+| Du | duodecillion | 10³⁹ |
+| Tr | tredecillion | 10⁴² |
+| Qa | quattuordecillion | 10⁴⁵ |
+| Qi | (second use) | 10⁴⁸ |
+| Sx | (second use) | 10⁵¹ |
+| Sp | (second use) | 10⁵⁴ |
+| Oc | (second use) | 10⁵⁷ |
+| No | (second use) | 10⁶⁰ |
+| Vg | vigintillion | 10⁶³ |
+| Uv | unvigintillion | 10⁶⁶ |
+| Dv | duovigintillion | 10⁶⁹ |
+| Tv | trevigintillion | 10⁷² |
+| Qt | quattuorvigintillion | 10⁷⁵ |
+| Qn | quinvigintillion | 10⁷⁸ |
+| Sx | (third use) | 10⁸¹ |
+| Sp | (third use) | 10⁸⁴ |
+| Oc | (third use) | 10⁸⁷ |
+| No | (third use) | 10⁹⁰ |
+| Tg | trigintillion | 10⁹³–10⁹⁶+ |
+
+Numbers below 1,000 are displayed as plain integers with no abbreviation.
+
+<Note>
+The game supports numbers up to and beyond **trigintillion**. The `Tg` suffix is used for all values from 10⁹³ onward — the display system does not go higher than `Tg`. Some suffix letters are reused at higher magnitudes (e.g. `Qi`, `Sx`, `Sp`, `Oc`, `No` each appear multiple times in the table above); these are implementation details of the `abbreviateNumber()` function in the game source.
+</Note>
+
+## Display format
+
+All abbreviated numbers show **one decimal place** when the value is not a whole multiple of the unit, and the `.0` is stripped when unnecessary:
+
+The value is divided by the unit, formatted to one decimal place with `.toFixed(1)`, then the trailing `.0` is stripped with a regex replace before the suffix is appended. Examples:
+
+| Raw value | Displayed as |
+|---|---|
+| 999 | `999` |
+| 1,000 | `1k` |
+| 1,500 | `1.5k` |
+| 1,000,000 | `1M` |
+| 1,234,567 | `1.2M` |
+| 10,000,000,000 | `10B` |
+
+## Full number display
+
+If you prefer to see the complete unabbreviated number, open **Settings** and switch the number display mode from `abbreviated` to `full`. This setting is stored in `gameState.settings.numberDisplay` and persists across sessions.

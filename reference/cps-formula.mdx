@@ -1,0 +1,109 @@
+---
+title: "How Coffee Per Second (CPS) Is Calculated"
+description: "A complete breakdown of the CPS formula in Coffee Tycoon, covering base values, item multipliers, prestige bonuses, and permanent upgrades."
+---
+
+Coffee Per Second (CPS) is the core production metric in Coffee Tycoon — it determines how fast your coffee count grows while you are away or idle. Every building you own, every upgrade you purchase, and every prestige you complete feeds into a single final CPS number displayed in the status bar.
+
+## The formula
+
+CPS is computed in two stages inside `calculateTotalCPS()`.
+
+**Stage 1 — sum across all buildings:**
+
+```js
+totalCPS = sum of (item.cps × ownedCount × itemMultiplier) for each building
+```
+
+**Stage 2 — apply global multipliers:**
+
+```js
+finalCPS = totalCPS × prestigeMultiplier × permanentCPSBonus
+```
+
+### Component reference
+
+| Component | Description |
+|---|---|
+| `item.cps` | Base CPS value hard-coded in the `shopItems` array for each building type |
+| `ownedCount` | The number of that building you currently own |
+| `itemMultiplier` | Accumulated multiplier for that building from upgrades and achievements |
+| `prestigeMultiplier` | `1.0 + (goldenCoffee × 0.1)` — increases with each prestige |
+| `permanentCPSBonus` | Product of all permanent CPS golden upgrades purchased (starts at `1.0`) |
+
+#### `item.cps` — base building values
+
+Each building has a fixed base CPS defined in the source:
+
+| Building | Base CPS |
+|---|---|
+| Auto Brewer | 5 |
+| Barista | 10 |
+| Coffee Grinder | 100 |
+| Espresso Machine | 500 |
+| Coffee Truck | 2,000 |
+| Coffee Factory | 30,000 |
+| Coffee Corporation | 400,000 |
+| Coffee Franchise | 5,000,000 |
+| Coffee Country | 50,000,000 |
+| Coffee Continent | 500,000,000 |
+| Coffee Planet | 7,500,000,000 |
+| Coffee Solar System | 100,000,000,000 |
+| Coffee Galaxy | 1,500,000,000,000 |
+| Coffee Universe | 25,000,000,000,000 |
+| Coffee Dimension | 500,000,000,000,000 |
+| Coffee Multiverse | 10,000,000,000,000,000 |
+
+#### `itemMultiplier` — upgrade stacking
+
+Each building starts with an `itemMultiplier` of `1`. Purchasing a tier upgrade for that building doubles its multiplier. Global upgrades ("Efficient Operations", "Coffee Revolution") apply a multiplier to every building at once. Achievement rewards also add a percentage multiplier to specific buildings.
+
+<Note>
+Item multipliers stack **multiplicatively**. Each tier upgrade doubles the previous value — so after three tiers you have `1 × 2 × 2 × 2 = 8×`. They do not add; they compound.
+</Note>
+
+#### `prestigeMultiplier`
+
+Computed as `1.0 + (goldenCoffee × 0.1)`. With 5 Golden Coffee your multiplier is `1.5×`; with 10 it is `2.0×`. This multiplier applies to the entire `totalCPS` sum, not just individual buildings.
+
+#### `permanentCPSBonus`
+
+Purchased from the Golden Upgrades shop using Golden Coffee. Available tiers add `+5%`, `+10%`, and `+20%` permanently. Each purchased tier multiplies the existing bonus:
+
+```
+permanentCPSBonus = 1.0 × 1.05 × 1.10 × 1.20  (if all three are bought)
+                  = 1.386
+```
+
+## Per-item CPS
+
+The game also tracks the CPS contribution of each individual building type via `calculateItemCPS()`. This is used to display the per-building CPS rate in the shop:
+
+```js
+itemCPS = item.cps × itemMultiplier × prestigeMultiplier
+```
+
+Note that `permanentCPSBonus` is **not** included here — it only appears in the global total. The per-item value shows how much one unit of that building contributes before the permanent bonus is applied.
+
+## Worked example
+
+Suppose you own:
+- 10 Auto Brewers, `itemMultiplier = 4` (two tiers purchased)
+- 5 Baristas, `itemMultiplier = 2` (one tier purchased)
+- `prestigeMultiplier = 1.2` (2 Golden Coffee)
+- `permanentCPSBonus = 1.05` (one +5% permanent upgrade)
+
+```
+totalCPS = (5 × 10 × 4) + (10 × 5 × 2)
+         = 200 + 100
+         = 300
+
+finalCPS = 300 × 1.2 × 1.05
+         = 378
+```
+
+The status bar would display **378 CPS**.
+
+## Real-time updates
+
+The CPS value shown in the status bar is recalculated every frame as part of the main game loop. It reflects the current state of your buildings, upgrades, and prestige multiplier at all times — there is no delay or caching. Any purchase or upgrade takes effect on the very next frame.
